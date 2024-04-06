@@ -44,6 +44,7 @@ if __name__ == "__main__":
                 if line_parts.get_role() == Role.WORKER:
                     if line_parts.get_action() == Action.BLOCK_MINED:
                         stats.add_mined_block(line_parts.get_duration_ms())
+
                     elif line_parts.get_action() == Action.RESOURCE_MINED:
                         stats.add_mined_resource(line_parts.get_id(), line_parts.get_duration_ms())
 
@@ -54,6 +55,7 @@ if __name__ == "__main__":
                 elif line_parts.get_role() == Role.LORRY:
                     if line_parts.get_action() == Action.LOADED_AFTER:
                         stats.add_lorry_loaded(line_parts.get_id(), line_parts.get_duration_ms())
+
                     elif line_parts.get_action() == Action.DROVE_TO_FERRY or \
                             line_parts.get_action() == Action.DROVE_TO_TARGET_LOCATION:
                         stats.add_lorry_travelled(line_parts.get_id(), line_parts.get_duration_ms())

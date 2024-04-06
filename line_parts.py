@@ -5,6 +5,17 @@ from role import *
 from action import *
 
 
+def get_date(string: str):
+    date_parts = string.split("-")
+    return int(date_parts[0]), int(date_parts[1]), int(date_parts[2])
+
+
+def get_time(string: str):
+    time_parts = string.split(":")
+    seconds_parts = time_parts[2].split(".")
+    return int(time_parts[0]), int(time_parts[1]), int(seconds_parts[0]), int(seconds_parts[1])
+
+
 class LineParts:
     def __init__(self, line: str, separator):
         self.__epoch_time_ms = 0
@@ -19,8 +30,8 @@ class LineParts:
         parts = line.split(separator)
 
         datetime_parts = parts[0].split(" ")
-        year, month, day = self.get_date(datetime_parts[0])
-        hour, minute, second, millisecond = self.get_time(datetime_parts[1])
+        year, month, day = get_date(datetime_parts[0])
+        hour, minute, second, millisecond = get_time(datetime_parts[1])
 
         datetime_object = datetime.datetime(year, month, day, hour, minute, second)
         epoch_time = (calendar.timegm(datetime_object.timetuple()) * 1000) + millisecond
@@ -42,15 +53,6 @@ class LineParts:
             action_parts = parts[3].split(":")
             if len(action_parts) > 1:
                 self.__duration_ms = int(action_parts[1].replace(" ", ""))
-
-    def get_date(self, string: str):
-        date_parts = string.split("-")
-        return int(date_parts[0]), int(date_parts[1]), int(date_parts[2])
-
-    def get_time(self, string: str):
-        time_parts = string.split(":")
-        seconds_parts = time_parts[2].split(".")
-        return int(time_parts[0]), int(time_parts[1]), int(seconds_parts[0]), int(seconds_parts[1])
 
     def get_epoch_time(self):
         return self.__epoch_time_ms
