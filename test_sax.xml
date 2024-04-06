@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<fin:stuff xmlns:fin="http://financialstuff.example.com/v1.3/">
-    <fin:person fin:key="123" fin:firstname="Jane" fin:surname="Doe"></fin:person>
-    <fin:person fin:key="234" fin:firstname="Svën" fin:surname="Höek"></fin:person>
-</fin:stuff>
