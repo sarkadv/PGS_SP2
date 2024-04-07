@@ -2,6 +2,10 @@ from enum import Enum
 
 
 class Action(Enum):
+    """
+    Enum represents all actions of interest caused by entities in the input file.
+    """
+
     BLOCK_MINED = "block mined"
     RESOURCE_MINED = "resource mined"
     LOADED_AFTER = "loaded after"
